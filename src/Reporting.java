@@ -33,6 +33,13 @@ public class Reporting {
     }
 
 
+    public void auctionHouseItems(String name){
+        for(AuctionHouse auctionHouse:auctionHouses){
+            if(auctionHouse.getName().equalsIgnoreCase(name))
+            System.out.println(ANSI_RED +  auctionHouse + ANSI_GREEN +auctionHouse.getItemsInAuctionHouse());
+        }
+    }
+
     /**
      * Code adapted from [source] https://github.com/newcastleuniversity-computing/csc1035-csc1036_practicals_2022/blob/solutions/part1/practical-10/src/IO.java
      * This method takes user input relating to the sold Item they wish to add.
@@ -67,6 +74,8 @@ public class Reporting {
                 break;
             }
         }
+
+        //If it is equal to null it will return null
 
     }
 
