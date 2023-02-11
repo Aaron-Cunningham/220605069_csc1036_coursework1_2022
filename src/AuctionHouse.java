@@ -58,6 +58,15 @@ public class AuctionHouse {
     }
 
 
+    public boolean addItem(Item i) {
+        if (!itemsInAuctionHouse.contains(i)) {
+            return itemsInAuctionHouse.add(i);
+        } else {
+            return false;
+        }
+    }
+
+
 
 
 }
