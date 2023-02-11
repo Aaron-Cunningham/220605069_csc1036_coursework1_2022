@@ -38,6 +38,10 @@ public class ReportingIO {
 
                     break;
                 case 3:
+                    sc.nextLine();
+                    System.out.println("Enter auction house name");
+                    String name = sc.nextLine();
+                    r.test(name);
 
                     break;
                 case 4:
@@ -64,7 +68,7 @@ public class ReportingIO {
         System.out.println(ANSI_RESET + "1: Add an auction house\n" +
                 "2: Add a Item\n" +
                 "3: Filter Items by given price\n" +
-                "4: Most Expensive Item" +
+                "4: Most Expensive Item\n" +
                 "5: \n\n");
     }
 
@@ -78,6 +82,7 @@ public class ReportingIO {
         String address = sc.nextLine();
         System.out.println("Please Enter the Auction house postcode");
         String postcode = sc.nextLine();
+
         return new AuctionHouse(name, address, postcode);
     }
 
@@ -98,7 +103,21 @@ public class ReportingIO {
         System.out.println("Please enter price");
         double price = sc.nextDouble();
         sc.nextLine();
+        System.out.println("Enter name of auction house to add to");
+        String auctionHouseName = sc.nextLine();
+        AuctionHouse auctionHouse = searchAuctionHouse(auctionHouseName);
+        System.out.println(ANSI_RED + "Items successfully added to " + auctionHouse);
         return new Item(itemName, itemLotNumber, yearSold, buyer, category, price);
+
+    }
+
+    private AuctionHouse searchAuctionHouse(String name){
+        for (AuctionHouse auctionHouse: r.auctionHouses){
+            if (auctionHouse.getName().equalsIgnoreCase(name)){
+                return auctionHouse;
+            }
+        }
+        return null;
 
     }
 
