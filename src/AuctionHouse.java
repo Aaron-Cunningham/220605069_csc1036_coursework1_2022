@@ -54,7 +54,7 @@ public class AuctionHouse {
         return "Auction House: \n" +
                 "Name: " + name + "\n" +
                 "Address: " + Arrays.toString(address) + "\n"+
-                "Items in Auction House: " + amountOfItemsInAuctionHouse() + "\n";
+                "Items in Auction House: " + amountOfItemsInAuctionHouse() + "\n" + "\n";
     }
 
 
