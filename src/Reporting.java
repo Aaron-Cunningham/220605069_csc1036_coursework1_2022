@@ -27,8 +27,7 @@ public class Reporting {
         }
         //If it doesn't exist, it will be added to the auction houses array.
         auctionHouses.add(addedAuctionHouse);
-        System.out.println(ANSI_RED + addedAuctionHouse + ANSI_GREEN +"Successfully added");
-        System.out.println();
+        System.out.println(ANSI_RED + addedAuctionHouse + ANSI_GREEN + "Successfully added");
         return true;
     }
 
