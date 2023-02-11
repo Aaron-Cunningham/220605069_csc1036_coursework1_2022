@@ -26,7 +26,7 @@ public class ReportingIO {
                     r.addAuctionHouse(recordAuctionHouse());
                     break;
                 case 2:
-                    r.addItem(recordItem());
+                    r.recordItem();
                     break;
                 case 3:
 
@@ -84,45 +84,7 @@ public class ReportingIO {
     }
 
 
-    /**
-     * Code adapted from [source] https://github.com/newcastleuniversity-computing/csc1035-csc1036_practicals_2022/blob/solutions/part1/practical-10/src/IO.java
-     * This method takes user input relating to the sold Item they wish to add.
-     * It then asks the user which Auction House they want to add the Item to, and uses the searchAuctionouse method to find that Auction House.
-     * It then returns that Item to that Auction House.
-     * @return Item
-     * **/
-    private Item recordItem() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please Item name");
-        String itemName = sc.nextLine();
-        System.out.println("Please Enter Item lot number");
-        int itemLotNumber = sc.nextInt();
-        System.out.println("Please Enter year sold");
-        int yearSold = sc.nextInt();
-        sc.nextLine();
-        System.out.println("Please enter buyer name");
-        String buyer = sc.nextLine();
-        System.out.println("Please enter category");
-        String category = sc.nextLine();
-        System.out.println("Please enter price");
-        double price = sc.nextDouble();
-        sc.nextLine();
-        System.out.println("Enter name of auction house to add to");
-        String auctionHouseName = sc.nextLine();
-        AuctionHouse auctionHouse = searchAuctionHouse(auctionHouseName);
 
-        // if the auctionHouse is not equal to null it will add the Item to the auction house
-        if (auctionHouse != null){
-            //If auctionHouse not equal to null, print statement will run and will return Item
-            System.out.println(ANSI_RED + "Items successfully added to " + auctionHouse);
-            Item item = new Item(itemName, itemLotNumber, yearSold, buyer, category, price);
-            //Adds item to auction house
-            auctionHouse.addItem(item);
-
-        }
-        //If it is equal to null it will return null
-        return null;
-    }
 
     /**
      * This method searches for an Auction House given the name (not case-sensitive)

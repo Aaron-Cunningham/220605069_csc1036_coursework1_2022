@@ -58,12 +58,12 @@ public class AuctionHouse {
     }
 
 
-    public boolean addItem(Item i) {
-        if (!itemsInAuctionHouse.contains(i)) {
-            return itemsInAuctionHouse.add(i);
-        } else {
-            return false;
-        }
+    /**
+     * This method adds an item to the itemsSoldByAuctionHouse ArrayList
+     * @param item
+     * **/
+    public void addSoldItem(Item item){
+        itemsInAuctionHouse.add(item);
     }
 
 
