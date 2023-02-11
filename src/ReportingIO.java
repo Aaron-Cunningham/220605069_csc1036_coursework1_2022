@@ -30,9 +30,11 @@ public class ReportingIO {
 
             switch (choice) {
                 case 1:
+                    r.addAuctionHouse(recordAuctionHouse());
 
                     break;
                 case 2:
+                    r.addItem(recordItem());
 
                     break;
                 case 3:
@@ -64,6 +66,40 @@ public class ReportingIO {
                 "3: Filter Items by given price\n" +
                 "4: Most Expensive Item" +
                 "5: \n\n");
+    }
+
+    private AuctionHouse recordAuctionHouse() {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Please Enter the Auction House Name");
+        String name = sc.nextLine();
+        System.out.println("Please Enter the Auction House first line of address");
+        String address = sc.nextLine();
+        System.out.println("Please Enter the Auction house postcode");
+        String postcode = sc.nextLine();
+        return new AuctionHouse(name, address, postcode);
+    }
+
+    private Item recordItem() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please Item name");
+        String itemName = sc.nextLine();
+        System.out.println("Please Enter Item lot number");
+        int itemLotNumber = sc.nextInt();
+        System.out.println("Please Enter year sold");
+        int yearSold = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Please enter buyer name");
+        String buyer = sc.nextLine();
+        System.out.println("Please enter category");
+        String category = sc.nextLine();
+        System.out.println("Please enter price");
+        double price = sc.nextDouble();
+        sc.nextLine();
+        return new Item(itemName, itemLotNumber, yearSold, buyer, category, price);
+
     }
 
 
