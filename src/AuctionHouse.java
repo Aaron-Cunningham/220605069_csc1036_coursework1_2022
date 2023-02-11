@@ -39,6 +39,9 @@ public class AuctionHouse {
 
 
 
+    /**
+     * Returns the items stored in an auction house
+     * **/
     public ArrayList<Item> getItemsInAuctionHouse() {
 
         return itemsInAuctionHouse;
