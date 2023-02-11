@@ -30,6 +30,7 @@ public class ReportingIO {
                     r.recordItem();
                     break;
                 case 3:
+                    System.out.println("Enter price");
                     double price = sc.nextDouble();
                     sc.nextLine();
                     System.out.println(r.filterItemByGreaterPrice(price));
@@ -41,7 +42,7 @@ public class ReportingIO {
                     sc.nextLine();
                     System.out.println("Enter auction house name");
                     String name = sc.nextLine();
-                    r.auctionHouseItems(name);
+                    System.out.println(r.auctionHouseItems(name));
 
                     break;
                 case 6:
@@ -85,30 +86,4 @@ public class ReportingIO {
 
         return new AuctionHouse(name, address, postcode);
     }
-
-
-
-
-    /**
-     * This method searches for an Auction House given the name (not case-sensitive)
-     * @param name
-     * @return Auction house
-     * **/
-    private AuctionHouse searchAuctionHouse(String name){
-        //Loops through the auctionHouses Array
-        for (AuctionHouse auctionHouse: r.auctionHouses){
-            //If the name inputted matches one in the auction houses array
-            if (auctionHouse.getName().equalsIgnoreCase(name)){
-                //It will return the auction house
-                return auctionHouse;
-            }
-        }
-        //Else the name doesn't match one in the Array it will tell the user it doesn't exist and return null
-        System.out.println(ANSI_RED + "Auction house doesnt exist");
-        return null;
-
-    }
-
-
-
 }
