@@ -4,11 +4,12 @@ import java.util.Arrays;
 
 public class AuctionHouse {
 
+    //Variables to store information about auction houses
     private String name;
     private String[] address = new String[2];
     int numOfItems;
 
-
+    //List containing items in auction house
     private ArrayList<Item> itemsInAuctionHouse;
 
 
