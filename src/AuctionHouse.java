@@ -66,7 +66,12 @@ public class AuctionHouse {
         itemsInAuctionHouse.add(item);
     }
 
-
+    /**
+     * Code adapted from [source] https://github.com/newcastleuniversity-computing/csc1035-csc1036_practicals_2022/blob/solutions/part1/practical-9/src/Garage.java
+     * This method takes a price from a user and adds it to the itemsGreaterPrice list if the item price is > than the user input price
+     * @param price
+     * @return Arraylist with items greater than inputted price
+     * **/
     public ArrayList<Item> filterItemsByPrice(double price){
         ArrayList<Item> itemsGreaterThanPrice = new ArrayList<>();
         for (Item item : itemsInAuctionHouse){
