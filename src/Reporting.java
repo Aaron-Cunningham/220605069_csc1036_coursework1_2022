@@ -33,14 +33,20 @@ public class Reporting {
     }
 
 
-    public void auctionHouseItems(String name){
+
+     /**
+     * This method iterates through all the auction houses and finds a match to the one the user inputted
+     * then it returns the items in that auction house.
+      * If the auction house isn't found it returns a message that the auction house wasn't found
+      * @param name
+     **/
+    public String auctionHouseItems(String name){
         for(AuctionHouse auctionHouse:auctionHouses){
-            if(auctionHouse.getName().equalsIgnoreCase(name))
-            System.out.println(ANSI_RED +  auctionHouse + ANSI_GREEN +auctionHouse.getItemsInAuctionHouse());
-            else {
-                System.out.println(ANSI_RED + "Auction House doesn't exist");
+            if(auctionHouse.getName().equalsIgnoreCase(name)){
+                return ANSI_RED + auctionHouse + ANSI_GREEN + auctionHouse.getItemsInAuctionHouse();
             }
         }
+        return ANSI_RED + "Auction Hose doesn't exist";
     }
 
     /**
@@ -78,8 +84,15 @@ public class Reporting {
 
     }
 
+
+    /**
+     * This method returns an array list containing items from the auction houses that are greater
+     * than the given price inputted by the user.
+     * @param price
+     * @return ArrayList with items greater than price
+     * **/
     public ArrayList<Item> filterItemByGreaterPrice(double price){
-        ArrayList<Item> itemsWithGreaterPrice = new ArrayList<Item>();
+        ArrayList<Item> itemsWithGreaterPrice = new ArrayList<>();
         for (AuctionHouse auctionHouse : auctionHouses){
             itemsWithGreaterPrice.addAll(auctionHouse.filterItemsByPrice(price));
         }
