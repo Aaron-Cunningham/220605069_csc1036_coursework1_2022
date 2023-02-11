@@ -37,15 +37,16 @@ public class Reporting {
         for(AuctionHouse auctionHouse:auctionHouses){
             if(auctionHouse.getName().equalsIgnoreCase(name))
             System.out.println(ANSI_RED +  auctionHouse + ANSI_GREEN +auctionHouse.getItemsInAuctionHouse());
+            else {
+                System.out.println(ANSI_RED + "Auction House doesn't exist");
+            }
         }
     }
 
     /**
-     * Code adapted from [source] https://github.com/newcastleuniversity-computing/csc1035-csc1036_practicals_2022/blob/solutions/part1/practical-10/src/IO.java
      * This method takes user input relating to the sold Item they wish to add.
-     * It then asks the user which Auction House they want to add the Item to, and uses the searchAuctionouse method to find that Auction House.
-     * It then returns that Item to that Auction House.
-     * @return Item
+     * It then asks the user which Auction House they want to add the Item to.
+     * It then adds that Item to that Auction House.
      * **/
     public void recordItem() {
         Scanner sc = new Scanner(System.in);
@@ -67,16 +68,22 @@ public class Reporting {
         String auctionHouseName = sc.nextLine();
         for (AuctionHouse auctionHouse:auctionHouses){
             if(auctionHouse.getName().equalsIgnoreCase(auctionHouseName)){
-                System.out.println(ANSI_RED + "Items successfully added to " + auctionHouse);
                 Item item = new Item(itemName, itemLotNumber, yearSold, buyer, category, price);
+                System.out.println(ANSI_RED + "Items successfully added to " + auctionHouse + item);
                 //Adds item to auction house
                 auctionHouse.addSoldItem(item);
                 break;
             }
         }
 
-        //If it is equal to null it will return null
+    }
 
+    public ArrayList<Item> filterItemByGreaterPrice(double price){
+        ArrayList<Item> itemsWithGreaterPrice = new ArrayList<Item>();
+        for (AuctionHouse auctionHouse : auctionHouses){
+            itemsWithGreaterPrice.addAll(auctionHouse.filterItemsByPrice(price));
+        }
+        return itemsWithGreaterPrice;
     }
 
 }

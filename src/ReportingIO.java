@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ReportingIO {
@@ -29,7 +30,9 @@ public class ReportingIO {
                     r.recordItem();
                     break;
                 case 3:
-
+                    double price = sc.nextDouble();
+                    sc.nextLine();
+                    System.out.println(r.filterItemByGreaterPrice(price));
                     break;
                 case 4:
 
@@ -58,7 +61,7 @@ public class ReportingIO {
     private void menu() {
         System.out.println(ANSI_RESET + "1: Add an auction house\n" +
                 "2: Add a Item\n" +
-                "3: Filter Items by given price\n" +
+                "3: Show items more expensive than inputted price\n" +
                 "4: Most Expensive Item\n" +
                 "5: View Items in a specific Auction House");
     }

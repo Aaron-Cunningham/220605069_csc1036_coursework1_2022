@@ -67,6 +67,17 @@ public class AuctionHouse {
     }
 
 
+    public ArrayList<Item> filterItemsByPrice(double price){
+        ArrayList<Item> itemsGreaterThanPrice = new ArrayList<>();
+        for (Item item : itemsInAuctionHouse){
+            if(item.getPrice() > price){
+                itemsGreaterThanPrice.add(item);
+            }
+        }
+        return itemsGreaterThanPrice;
+    }
+
+
 
 
 }
