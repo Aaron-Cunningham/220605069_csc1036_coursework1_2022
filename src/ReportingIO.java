@@ -41,7 +41,7 @@ public class ReportingIO {
                     sc.nextLine();
                     System.out.println("Enter auction house name");
                     String name = sc.nextLine();
-                    r.test(name);
+                    r.auctionHouseItems(name);
 
                     break;
                 case 4:
