@@ -1,6 +1,8 @@
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class AuctionHouse {
 
@@ -78,6 +80,9 @@ public class AuctionHouse {
      * **/
     public ArrayList<Item> filterItemsByPrice(double price){
         ArrayList<Item> itemsGreaterThanPrice = new ArrayList<>();
+        if(itemsInAuctionHouse.size() == 0){
+            return null;
+        }
         for (Item item : itemsInAuctionHouse){
             if(item.getPrice() > price){
                 itemsGreaterThanPrice.add(item);
@@ -87,6 +92,18 @@ public class AuctionHouse {
     }
 
 
-
+    /**
+     * References [source] https://www.youtube.com/watch?v=ofDV5Ywdgl8&ab_channel=KKJavaTutorials(Java 8 Comparator’s comparing() methods, 2017)
+     * This method returns the most expensive product from the itemsInAuctionHouse list.
+     * @return Most expensive product.
+     * **/
+    public Item mostExpensiveItem() {
+        if(itemsInAuctionHouse.size() == 0){
+            return null;
+        }
+        Comparator<Item> comp = Comparator.comparing(Item::getPrice);
+        Item mostExpensiveItem = Collections.max(itemsInAuctionHouse, comp);
+        return mostExpensiveItem;
+    }
 
 }
