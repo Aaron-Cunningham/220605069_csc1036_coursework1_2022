@@ -122,7 +122,7 @@ public class AuctionHouse {
                 itemCount++;
             }
         }
-        return itemCount/price;
+        return price/itemCount;
     }
 
 }
