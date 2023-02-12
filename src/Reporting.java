@@ -1,5 +1,7 @@
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class Reporting {
@@ -104,6 +106,26 @@ public class Reporting {
         return itemsWithGreaterPrice;
     }
 
+    /**
+     * References [source] https://www.youtube.com/watch?v=ofDV5Ywdgl8&ab_channel=KKJavaTutorials(Java 8 Comparator’s comparing() methods, 2017)
+     * This method returns the highest priced Item out of all the auction houses
+     * @return Highest priced Item
+     * @return null if tempList has no items.
+     * **/
+    public Item mostExpensiveItemReporting() {
+        ArrayList<Item> tempList = new ArrayList<>();
+        for (AuctionHouse auctionHouse:auctionHouses){
+            tempList.add(auctionHouse.mostExpensiveItem());
+        }
+        if(tempList.size() == 0){
+            return null;
+        }
+        Comparator<Item> comp = Comparator.comparing(Item::getPrice);
+        Item mostExpensive = Collections.max(tempList, comp);
+        return mostExpensive;
+
+    }
+
 
     /**
      * This method limits the amount of characters a user can input into a certain field
@@ -156,6 +178,10 @@ public class Reporting {
         } while (userYear > thisYear || userYear < 1980);
         return userYear;
     }
+
+
+
+
 
 
 }
