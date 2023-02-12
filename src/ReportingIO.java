@@ -5,24 +5,28 @@ public class ReportingIO {
     private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_RESET = "\u001B[0m";
     public static void main(String[] args) {
-        new ReportingIO().run();
+        new ReportingIO().menuSystem();
+
     }
     Reporting r = new Reporting();
 
 
     /**
-     * Code adapted from [source] https://github.com/newcastleuniversity-computing/csc1035-csc1036_practicals_2022/blob/solutions/part1/practical-10/src/IO.java
-     * This method runs allows the user to interact with the menu system in the console.
-     * menu() is called which prints out the option the user has which run() gives it functionality.
+     * This method allows the user to interact with the menu system in the console.
      * **/
-    public void run() {
-        boolean quit = false;
+    public void menuSystem(){
         Scanner sc = new Scanner(System.in);
-        while (!quit) {
-            menu();
-            System.out.println("Please select an option");
+        int option = 0;
+        while(option==0){
+            System.out.println(ANSI_RESET + "Welcome to the Auction Company Menu System!\n" +
+                    "1: To add an Auction House\n" +
+                    "2: To add an item to a Auction House\n" +
+                    "3: Show items more expensive than inputted price\n" +
+                    "4: Most expensive Item\n" +
+                    "5: View Items in Auction House\n" +
+                    "6: Quit");
             int choice = sc.nextInt();
-            switch (choice) {
+            switch (choice){
                 case 1:
                     r.addAuctionHouse(recordAuctionHouse());
                     break;
@@ -30,41 +34,31 @@ public class ReportingIO {
                     r.recordItem();
                     break;
                 case 3:
-                    System.out.println("Enter price");
+                    System.out.println("Please input a price");
                     double price = sc.nextDouble();
                     sc.nextLine();
                     System.out.println(r.filterItemByGreaterPrice(price));
                     break;
                 case 4:
-
+                    System.out.println(r.mostExpensiveItemReporting());
                     break;
                 case 5:
-                    sc.nextLine();
-                    System.out.println("Enter auction house name");
+                    System.out.println("Please enter the name of the Auction House you wish to view Items of");
+                    sc.nextLine();//Buffer
                     String name = sc.nextLine();
                     System.out.println(r.auctionHouseItems(name));
-
                     break;
                 case 6:
-                    System.out.println("Quitting");
-                    quit = true;
+                    System.out.println("Thank you for using the Auction House Menu system.");
+                    System.exit(0);
                     break;
                 default:
-                    System.out.println("Not a valid option");
+                    System.out.println("This option isn't valid");
+                    option = 0;
+                    break;
+
             }
         }
-
-    }
-
-
-
-
-    private void menu() {
-        System.out.println(ANSI_RESET + "1: Add an auction house\n" +
-                "2: Add a Item\n" +
-                "3: Show items more expensive than inputted price\n" +
-                "4: Most Expensive Item\n" +
-                "5: View Items in a specific Auction House");
     }
 
 
