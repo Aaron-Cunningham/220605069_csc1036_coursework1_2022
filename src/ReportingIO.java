@@ -43,12 +43,14 @@ public class ReportingIO {
                     System.out.println(r.mostExpensiveItemReporting());
                     break;
                 case 5:
+
+                case 6:
                     System.out.println("Please enter the name of the Auction House you wish to view Items of");
                     sc.nextLine();//Buffer
                     String name = sc.nextLine();
                     System.out.println(r.auctionHouseItems(name));
                     break;
-                case 6:
+                case 7:
                     System.out.println("Thank you for using the Auction House Menu system.");
                     System.exit(0);
                     break;
