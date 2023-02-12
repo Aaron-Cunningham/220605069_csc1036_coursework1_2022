@@ -106,4 +106,23 @@ public class AuctionHouse {
         return mostExpensiveItem;
     }
 
+
+    /**
+     * This returns the average price of the Items stored in the itemsInAuctionHouse Array
+     * Formula: Average = sum of values/number of values
+     * @param year
+     * @return Average price of items
+     * **/
+    public double averageItemPriceGivenYear(int year){
+        double price = 0;
+        int itemCount = 0;
+        for (Item item:itemsInAuctionHouse){
+            if(year == item.getYearSold()){
+                price += item.getPrice();
+                itemCount++;
+            }
+        }
+        return itemCount/price;
+    }
+
 }
