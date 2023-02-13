@@ -4,6 +4,15 @@ public class Item {
     private String buyerName, category, itemName;
     private double price;
 
+    /**
+     * This constructor represents a Item
+     * @param itemName
+     * @param lotNumber
+     * @param yearSold
+     * @param buyerName
+     * @param category
+     * @param price
+     */
     public Item(String itemName, int lotNumber, int yearSold, String buyerName, String category, double price) {
         this.lotNumber = lotNumber;
         this.yearSold = yearSold;
@@ -13,49 +22,14 @@ public class Item {
         this.itemName = itemName;
     }
 
-    public int getLotNumber() {
-        return lotNumber;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setLotNumber(int lotNumber) {
-        this.lotNumber = lotNumber;
-    }
-
     public int getYearSold() {
         return yearSold;
-    }
-
-    public void setYearSold(int yearSold) {
-        this.yearSold = yearSold;
-    }
-
-    public String getBuyerName() {
-        return buyerName;
-    }
-
-    public void setBuyerName(String buyerName) {
-        this.buyerName = buyerName;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
     @Override
     public String toString() {
