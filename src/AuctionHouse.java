@@ -10,6 +10,7 @@ public class AuctionHouse {
     private String name;
     private String[] address = new String[2];
     int numOfItems;
+    private double averagePrice;
 
     //List containing items in auction house
     private ArrayList<Item> itemsInAuctionHouse;
@@ -24,22 +25,20 @@ public class AuctionHouse {
         this.address[1] = postCode;
         this.numOfItems = numOfItems;
         this.itemsInAuctionHouse = new ArrayList();
+        this.averagePrice = averagePrice;
     }
 
-
-    public String[] getAddress() {
-        return address;
+    public double getAveragePrice() {
+        return averagePrice;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAveragePrice(double averagePrice) {
+        this.averagePrice = averagePrice;
     }
-
-
 
     /**
      * Returns the items stored in an auction house
@@ -116,7 +115,7 @@ public class AuctionHouse {
     public double averageItemPriceGivenYear(int year){
         double price = 0;
         int itemCount = 0;
-        for (Item item:itemsInAuctionHouse){
+        for (Item item: itemsInAuctionHouse){
             if(year == item.getYearSold()){
                 price += item.getPrice();
                 itemCount++;
