@@ -6,7 +6,9 @@ import java.util.Comparator;
 
 public class AuctionHouse {
 
-    //Variables to store information about auction houses
+    /*
+    Variables to store information about auction houses
+     */
     private String name;
     private String[] address = new String[2];
     int numOfItems;
@@ -18,9 +20,9 @@ public class AuctionHouse {
 
     /**
      * Constructor that represents an Auction House
-     * @param name
-     * @param firstLineAddress
-     * @param postCode
+     * @param name - Relates to the name of the Auction House
+     * @param firstLineAddress - Relates to the First-line of the address of the Auction House
+     * @param postCode - Relates to the post code of the Auction House
      */
     AuctionHouse(String name, String firstLineAddress, String postCode){
         this.name = name;
@@ -31,10 +33,19 @@ public class AuctionHouse {
         this.averagePrice = averagePrice;
     }
 
+    /**
+     * This method is used in conjunction with the bestAuctionHouseAverageYear method in the Reporting class
+     * to get the average of how well an auction house did in a particular year
+     * @return The average price from sold items at an Auction house
+     */
     public double getAveragePrice() {
         return averagePrice;
     }
 
+    /**
+     * This getter is used to get the name of an Auction House
+     * @return The name of an auction house
+     */
     public String getName() {
         return name;
     }
@@ -45,18 +56,27 @@ public class AuctionHouse {
 
     /**
      * Returns the items stored in an auction house
+     * @return Items in the auction house
      * **/
     public ArrayList<Item> getItemsInAuctionHouse() {
 
         return itemsInAuctionHouse;
     }
 
+    /***
+     *
+     * @return The number of items in an auction house
+     */
     public int amountOfItemsInAuctionHouse(){
         numOfItems = getItemsInAuctionHouse().size();
         return numOfItems;
     }
 
 
+    /***
+     *
+     * @return A String representation of the Auction House details
+     */
     @Override
     public String toString() {
         return "Auction House: \n" +
