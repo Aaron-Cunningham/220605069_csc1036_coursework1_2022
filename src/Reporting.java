@@ -25,7 +25,7 @@ public class Reporting {
      * **/
     public boolean addAuctionHouse(AuctionHouse addedAuctionHouse){
         //Iterates through all the auction houses
-        for (AuctionHouse auctionHouse:auctionHouses){
+        for (AuctionHouse auctionHouse: auctionHouses){
             //If there's an auction house with the same name as the one been added
             if(auctionHouse.getName().equals(addedAuctionHouse.getName())){
                 //It returns false and prints a message to the user
@@ -37,23 +37,6 @@ public class Reporting {
         auctionHouses.add(addedAuctionHouse);
         System.out.println(ANSI_RED + addedAuctionHouse + ANSI_GREEN + "Successfully added");
         return true;
-    }
-
-
-
-     /**
-     * This method iterates through all the auction houses and finds a match to the one the user inputted
-     * then it returns the items in that auction house.
-      * If the auction house isn't found it returns a message that the auction house wasn't found
-      * @param name
-     **/
-    public String auctionHouseItems(String name){
-        for(AuctionHouse auctionHouse:auctionHouses){
-            if(auctionHouse.getName().equalsIgnoreCase(name)){
-                return ANSI_RED + auctionHouse + ANSI_GREEN + auctionHouse.getItemsInAuctionHouse();
-            }
-        }
-        return ANSI_RED + "Auction Hose doesn't exist";
     }
 
     /**
@@ -78,7 +61,7 @@ public class Reporting {
         sc.nextLine();
         System.out.println("Enter name of auction house to add to");
         String auctionHouseName = sc.nextLine();
-        for (AuctionHouse auctionHouse:auctionHouses){
+        for (AuctionHouse auctionHouse: auctionHouses){
             if(auctionHouse.getName().equalsIgnoreCase(auctionHouseName)){
                 Item item = new Item(itemName, itemLotNumber, yearSold, buyer, category, price);
                 System.out.println(auctionHouse.getName());
@@ -114,7 +97,7 @@ public class Reporting {
      * **/
     public Item mostExpensiveItemReporting() {
         ArrayList<Item> tempList = new ArrayList<>();
-        for (AuctionHouse auctionHouse:auctionHouses){
+        for (AuctionHouse auctionHouse: auctionHouses){
             tempList.add(auctionHouse.mostExpensiveItem());
         }
         if(tempList.size() == 0){
@@ -171,7 +154,7 @@ public class Reporting {
         do {
             System.out.println("Please enter the year the Item sold between 1980 and " + thisYear);
             while (!sc.hasNextInt()) {
-                System.err.println("That's not a year. Please enter a year between 1980 and " + thisYear);
+                System.err.println("That's not a valid year. Please enter a year between 1980 and " + thisYear);
                 sc.next(); // this is important!
             }
             userYear = sc.nextInt();
@@ -179,6 +162,31 @@ public class Reporting {
         return userYear;
     }
 
+
+    /**
+     * References [source] https://www.youtube.com/watch?v=ofDV5Ywdgl8&ab_channel=KKJavaTutorials(Java 8 Comparator’s comparing() methods, 2017)
+     * This method returns The Auction House with the largest average price for a given year.
+     * @param year
+     * @return The AuctionHouse with the largest average price for a given year.
+     * **/
+    public AuctionHouse bestAuctionHouseAverageYear(int year){
+        ArrayList<AuctionHouse> bestPerforming = new ArrayList<>();
+        for (AuctionHouse auctionHouse: auctionHouses){
+            double average = auctionHouse.averageItemPriceGivenYear(year);
+            auctionHouse.setAveragePrice(average);
+            if(average > 0) {
+                bestPerforming.add(auctionHouse);
+            }
+        }
+        if(bestPerforming.size() == 0){
+            return null;
+        }
+        Comparator<AuctionHouse> comp = Comparator.comparing(AuctionHouse::getAveragePrice);
+        AuctionHouse mostExpensive = Collections.max(bestPerforming, comp);
+        return mostExpensive;
+
+
+    }
 
 
 
