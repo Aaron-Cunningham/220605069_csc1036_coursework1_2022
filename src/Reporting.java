@@ -6,9 +6,11 @@ import java.util.Scanner;
 
 public class Reporting {
 
-
+    //Sets console text to Red
     private static final String ANSI_RED = "\u001B[31m";
+    //Resets console text to default
     private static final String ANSI_RESET = "\u001B[0m";
+    //Sets console text to Green
     public static final String ANSI_GREEN = "\u001B[32m";
     public String userInput;
     public int convertedYear;
