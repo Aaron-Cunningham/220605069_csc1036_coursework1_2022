@@ -23,7 +23,7 @@ public class ReportingIO {
                     "2: To add an item to a Auction House\n" +
                     "3: Show items more expensive than inputted price\n" +
                     "4: Most expensive Item\n" +
-                    "5: View Items in Auction House\n" +
+                    "5: The AuctionHouse with the largest average price for a given year.\n" +
                     "6: Quit");
             int choice = sc.nextInt();
             switch (choice){
@@ -43,14 +43,12 @@ public class ReportingIO {
                     System.out.println(r.mostExpensiveItemReporting());
                     break;
                 case 5:
-
-                case 6:
-                    System.out.println("Please enter the name of the Auction House you wish to view Items of");
+                    System.out.println("Please enter a year");
+                    int year = sc.nextInt();
                     sc.nextLine();//Buffer
-                    String name = sc.nextLine();
-                    System.out.println(r.auctionHouseItems(name));
+                    System.out.println(r.bestAuctionHouseAverageYear(year));
                     break;
-                case 7:
+                case 6:
                     System.out.println("Thank you for using the Auction House Menu system.");
                     System.exit(0);
                     break;
