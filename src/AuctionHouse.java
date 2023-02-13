@@ -17,8 +17,11 @@ public class AuctionHouse {
 
 
     /**
-     * Constructor for the Item class
-     * **/
+     * Constructor that represents an Auction House
+     * @param name
+     * @param firstLineAddress
+     * @param postCode
+     */
     AuctionHouse(String name, String firstLineAddress, String postCode){
         this.name = name;
         this.address[0] = firstLineAddress;
