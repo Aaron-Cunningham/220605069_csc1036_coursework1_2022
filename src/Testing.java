@@ -38,15 +38,11 @@ public class Testing {
         System.out.println(ANSI_RED + "The most expensive item is \n" + ANSI_GREEN + r.mostExpensiveItemReporting());//PASSED Returns Julius Caesar Item
         System.out.println(ANSI_RED + "List of all items over 1000 \n" + ANSI_GREEN + r.filterItemByGreaterPrice(1000));//PASSED Returns Julius Caesar Item, The Starry Night Item, Mona Lisa Item
         System.out.println(ANSI_RED + "The best performing Auction House based on Average Item price in year 2022 is \n" + ANSI_GREEN +r.bestAuctionHouseAverageYear(2023));//PASSED Returned Bid to Buy
-        System.out.println(ANSI_RED + "A list of Bid to buy's items is " + ANSI_GREEN + r.auctionHouseItems("Bid to buy"));//PASSED Returns Julius Caesar Item, Mona List Item, Couch Item
-        System.out.println(ANSI_RED + "A list of Bidders dream items is " + ANSI_GREEN + r.auctionHouseItems("Bidders dream"));//PASSED Returns Vintage table Item, Old Chair Item, The Starry Night Item
-        System.out.println(ANSI_RED + "This should return 'Auction House doesn't exist'\n " + ANSI_GREEN + r.auctionHouseItems("Test"));//PASSED Returns "Auction Hose doesn't exist"
         /*
         AuctionHouse class Tests
          */
         System.out.println(ANSI_RED + "A list of items in Bid to buy's Auction house is \n" + ANSI_GREEN + auctionHouse1.getItemsInAuctionHouse());//PASSED Returns Julius Caesar Item, Mona List Item, Couch Item
         System.out.println(ANSI_RED + "A list of items in Bidders Dream's Auction house is \n" + ANSI_GREEN + auctionHouse2.getItemsInAuctionHouse());//PASSED Returns The Starry Night, Old Chair, Vintage Table
-
         System.out.println(ANSI_RED + "Average price of Items in Bid to buy's Auction house in 2023 is \n" + ANSI_GREEN + auctionHouse1.averageItemPriceGivenYear(2023));//PASSED Returns 6000025
         System.out.println(ANSI_RED + "Average price of Items in Bidders Dream's Auction house in 2022 is \n" + ANSI_GREEN + auctionHouse2.averageItemPriceGivenYear(2022));//PASSED Returns 1000450.0
         System.out.println(ANSI_RED + "The number of Items in Bid to Buy's Auction house is \n" + ANSI_GREEN + auctionHouse1.numOfItems);//PASSED Returned 3
