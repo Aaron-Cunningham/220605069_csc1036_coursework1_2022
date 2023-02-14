@@ -22,7 +22,8 @@ public class ReportingIO {
                     "3: Show items more expensive than inputted price\n" +
                     "4: Most expensive Item\n" +
                     "5: The AuctionHouse with the largest average price for a given year.\n" +
-                    "6: Quit");
+                    "6: To view Items within an Auction House\n" +
+                    "7: Quit");
             int choice = sc.nextInt();
             switch (choice){
                 case 1:
@@ -47,14 +48,14 @@ public class ReportingIO {
                     System.out.println(r.bestAuctionHouseAverageYear(year));
                     break;
                 case 6:
-                    System.out.println("Thank you for using the Auction House Menu system.");
-                    System.exit(0);
-                    break;
-                case 7:
                     sc.nextLine();
+                    System.out.println("Enter the name of the auction house you wish to view the items of");
                     String name = sc.nextLine();
                     System.out.println(r.auctionHouseItems(name));
-
+                    break;
+                case 7:
+                    System.out.println("Thank you for using the Auction House Menu system.");
+                    System.exit(0);
                      break;
                 default:
                     System.out.println("This option isn't valid");
