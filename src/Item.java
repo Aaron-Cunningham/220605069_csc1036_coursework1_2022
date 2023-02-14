@@ -1,7 +1,7 @@
 public class Item {
 
-    private int lotNumber, yearSold;
-    private String buyerName, category, itemName;
+    private int yearSold;
+    private String buyerName, category, itemName, lotNumber;
     private double price;
 
     /**
@@ -13,7 +13,7 @@ public class Item {
      * @param category - Relates to the category of the Item
      * @param price - Relates to the price of an Item
      */
-    public Item(String itemName, int lotNumber, int yearSold, String buyerName, String category, double price) {
+    public Item(String itemName, String lotNumber, int yearSold, String buyerName, String category, double price) {
         this.lotNumber = lotNumber;
         this.yearSold = yearSold;
         this.buyerName = buyerName;
