@@ -22,7 +22,7 @@ public class Reporting {
 
     /**
      * This method takes an added auction house and checks if it already exists in the auctionHouses Array.
-     * If it does exist the user will recieve a message saying it exists, else, it gets added to the list of auction houses.
+     * If it does exist the user will receive a message saying it exists, else, it gets added to the list of auction houses.
      * @param addedAuctionHouse
      * **/
     public boolean addAuctionHouse(AuctionHouse addedAuctionHouse){
@@ -46,33 +46,20 @@ public class Reporting {
      * It then asks the user which Auction House they want to add the Item to.
      * It then adds that Item to that Auction House.
      * **/
-    public void recordItem() {
+    public boolean addItem(Item addedItem) {
         Scanner sc = new Scanner(System.in);
-        System.out.println(ANSI_RESET + "Please Item name");
-        String itemName = lengthLimit(userInput, 30);
-        System.out.println("Please Enter Item lot number");
-        int itemLotNumber = sc.nextInt();
-        int yearSold = yearCheck(convertedYear);
-        sc.nextLine();
-        System.out.println("Please enter buyer name");
-        String buyer = lengthLimit(userInput, 50);
-        System.out.println("Please enter category");
-        String category = lengthLimit(userInput, 50);
-        System.out.println("Please enter price");
-        double price = sc.nextDouble();
-        sc.nextLine();
         System.out.println("Enter name of auction house to add to");
         String auctionHouseName = sc.nextLine();
         for (AuctionHouse auctionHouse: auctionHouses){
             if(auctionHouse.getName().equalsIgnoreCase(auctionHouseName)){
-                Item item = new Item(itemName, itemLotNumber, yearSold, buyer, category, price);
                 System.out.println(auctionHouse.getName());
-                System.out.println(ANSI_RED + "Items successfully added to " + auctionHouse + item);
+                System.out.println(ANSI_RED + "Items successfully added to " + auctionHouse + addedItem);
                 //Adds item to auction house
-                auctionHouse.addSoldItem(item);
-                break;
+                auctionHouse.addSoldItem(addedItem);
+                return true;
             }
         }
+        return false;
 
     }
 
@@ -114,8 +101,8 @@ public class Reporting {
 
     /**
      * This method limits the amount of characters a user can input into a certain field
-     * @param userInput
-     * @param limit
+     * @param userInput - Relates to the input the user inputs
+     * @param limit - This is the limit set on the number of characters a user can input
      * @return userInput
      * **/
     private String lengthLimit(String userInput, int limit){
@@ -140,12 +127,12 @@ public class Reporting {
 
     /**
      * Code adapted from [soruce] https://stackoverflow.com/questions/35936799/validation-so-input-is-only-integer-in-java
-     * This method takes year initially as a String which checks that is a userYear between 0-9 and not larger than 4 characters.
-     * If them conditions are met, it converts the String into an integer which is then checked to make sure it's not less than
-     * the year 2000 and larger than the current year.
+     *
+     * This method restricts what year they are allowed to input when adding an item.
+     * It checks the year is between 1950 and the current year.
      *
      * @param userYear - Year the user inputs.
-     * @return converted year input as an integer
+     * @return userYear.
      **/
     private int yearCheck(int userYear) {
         Scanner sc = new Scanner(System.in);
@@ -154,13 +141,13 @@ public class Reporting {
         int thisYear = year.getValue();
 
         do {
-            System.out.println("Please enter the year the Item sold between 1980 and " + thisYear);
+            System.out.println("Please enter the year the Item sold between 1950 and " + thisYear);
             while (!sc.hasNextInt()) {
-                System.err.println("That's not a valid year. Please enter a year between 1980 and " + thisYear);
+                System.err.println("That's not a valid year. Please enter a year between 1950 and " + thisYear);
                 sc.next(); // this is important!
             }
             userYear = sc.nextInt();
-        } while (userYear > thisYear || userYear < 1980);
+        } while (userYear > thisYear || userYear < 1950);
         return userYear;
     }
 
@@ -168,7 +155,7 @@ public class Reporting {
     /**
      * References [source] https://www.youtube.com/watch?v=ofDV5Ywdgl8&ab_channel=KKJavaTutorials(Java 8 Comparator’s comparing() methods, 2017)
      * This method returns The Auction House with the largest average price for a given year.
-     * @param year
+     * @param year - This is the year of which the user wants to check for the best auction house average price
      * @return The AuctionHouse with the largest average price for a given year.
      * **/
     public AuctionHouse bestAuctionHouseAverageYear(int year){
@@ -185,11 +172,22 @@ public class Reporting {
         }
         Comparator<AuctionHouse> comp = Comparator.comparing(AuctionHouse::getAveragePrice);
         AuctionHouse mostExpensive = Collections.max(bestPerforming, comp);
+
         return mostExpensive;
+
 
 
     }
 
+
+    public String auctionHouseItems(String name){
+        for(AuctionHouse auctionHouse:auctionHouses){
+            if(auctionHouse.getName().equalsIgnoreCase(name)){
+                return ANSI_RED + auctionHouse + ANSI_GREEN + auctionHouse.getItemsInAuctionHouse();
+            }
+        }
+        return ANSI_RED + "Auction Hose doesn't exist";
+    }
 
 
 
