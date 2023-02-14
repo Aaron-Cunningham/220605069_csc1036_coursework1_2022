@@ -1,8 +1,6 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ReportingIO {
-    private static final String ANSI_RED = "\u001B[31m";
     private static final String ANSI_RESET = "\u001B[0m";
     public static void main(String[] args) {
         new ReportingIO().menuSystem();
@@ -31,7 +29,7 @@ public class ReportingIO {
                     r.addAuctionHouse(recordAuctionHouse());
                     break;
                 case 2:
-                    r.recordItem();
+                    r.addItem(recordItem());
                     break;
                 case 3:
                     System.out.println("Please input a price");
@@ -52,6 +50,12 @@ public class ReportingIO {
                     System.out.println("Thank you for using the Auction House Menu system.");
                     System.exit(0);
                     break;
+                case 7:
+                    sc.nextLine();
+                    String name = sc.nextLine();
+                    System.out.println(r.auctionHouseItems(name));
+
+                     break;
                 default:
                     System.out.println("This option isn't valid");
                     option = 0;
@@ -80,4 +84,33 @@ public class ReportingIO {
 
         return new AuctionHouse(name, address, postcode);
     }
+
+
+    /**
+     * Code adapted from [source] https://github.com/newcastleuniversity-computing/csc1035-csc1036_practicals_2022/blob/solutions/part1/practical-10/src/IO.java
+     *
+     * This method takes user input about information of the item.
+     * @return - The item that was just inputted by the user
+     */
+    private Item recordItem(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println(ANSI_RESET + "Please Item name");
+        String itemName = sc.nextLine();
+        System.out.println("Please Enter Item lot number");
+        String itemLotNumber = sc.nextLine();
+        System.out.println("Enter year sold");
+        int yearSold = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Please enter buyer name");
+        String buyer = sc.nextLine();
+        System.out.println("Please enter category");
+        String category = sc.nextLine();
+        System.out.println("Please enter price");
+        double price = sc.nextDouble();
+        sc.nextLine();
+        return new Item(itemName, itemLotNumber, yearSold, buyer, category, price);
+
+    }
 }
+
+
