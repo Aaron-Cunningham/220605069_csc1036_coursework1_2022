@@ -28,7 +28,6 @@ public class AuctionHouse {
         this.name = name;
         this.address[0] = firstLineAddress;
         this.address[1] = postCode;
-        this.numOfItems = numOfItems;
         this.itemsInAuctionHouse = new ArrayList();
         this.averagePrice = averagePrice;
     }
