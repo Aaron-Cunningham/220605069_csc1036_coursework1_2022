@@ -12,8 +12,6 @@ public class Reporting {
     private static final String ANSI_RESET = "\u001B[0m";
     //Sets console text to Green
     public static final String ANSI_GREEN = "\u001B[32m";
-    public String userInput;
-    public int convertedYear;
 
 
     //List containing auction houses
@@ -85,15 +83,15 @@ public class Reporting {
      * @return null if tempList has no items.
      * **/
     public Item mostExpensiveItemReporting() {
-        ArrayList<Item> tempList = new ArrayList<>();
+        ArrayList<Item> items = new ArrayList<>();
         for (AuctionHouse auctionHouse: auctionHouses){
-            tempList.add(auctionHouse.mostExpensiveItem());
+            items.add(auctionHouse.mostExpensiveItem());
         }
-        if(tempList.size() == 0){
+        if(items.size() == 0){
             return null;
         }
         Comparator<Item> comp = Comparator.comparing(Item::getPrice);
-        Item mostExpensive = Collections.max(tempList, comp);
+        Item mostExpensive = Collections.max(items, comp);
         return mostExpensive;
 
     }
@@ -105,7 +103,7 @@ public class Reporting {
      * @param limit - This is the limit set on the number of characters a user can input
      * @return userInput
      * **/
-    private String lengthLimit(String userInput, int limit){
+    public String lengthLimit(String userInput, int limit){
         Scanner sc = new Scanner(System.in);
         //do while loop starts
         do{
@@ -134,7 +132,7 @@ public class Reporting {
      * @param userYear - Year the user inputs.
      * @return userYear.
      **/
-    private int yearCheck(int userYear) {
+    public int yearCheck(int userYear) {
         Scanner sc = new Scanner(System.in);
         //Gets the current year
         Year year = Year.now();
@@ -160,6 +158,7 @@ public class Reporting {
      * **/
     public AuctionHouse bestAuctionHouseAverageYear(int year){
         ArrayList<AuctionHouse> bestPerforming = new ArrayList<>();
+
         for (AuctionHouse auctionHouse: auctionHouses){
             double average = auctionHouse.averageItemPriceGivenYear(year);
             auctionHouse.setAveragePrice(average);
@@ -187,6 +186,26 @@ public class Reporting {
             }
         }
         return ANSI_RED + "Auction Hose doesn't exist";
+    }
+
+
+    /**
+     * Code adapted from [soruce] https://stackoverflow.com/questions/35936799/validation-so-input-is-only-integer-in-java
+     * This method restricts what price users can input to only positive doubles
+     * @param price - The price the user inputs
+     * @return price
+     **/
+    public double priceCheck(double price) {
+        Scanner sc = new Scanner(System.in);
+        do {
+            System.out.println("Please enter the price the item sold for");
+            while (!sc.hasNextDouble()) {
+                System.err.println("Not a valid price, must be positive or equal to 0");
+                sc.next(); // this is important!
+            }
+            price = sc.nextInt();
+        } while (price < 0);
+        return price;
     }
 
 
