@@ -8,6 +8,10 @@ public class ReportingIO {
     }
     Reporting r = new Reporting();
 
+    String itemInput, categoryInput, buyerInput;
+    int yearInput;
+    double priceInput;
+
 
     /**
      * This method allows the user to interact with the menu system in the console.
@@ -96,19 +100,16 @@ public class ReportingIO {
     private Item recordItem(){
         Scanner sc = new Scanner(System.in);
         System.out.println(ANSI_RESET + "Please Item name");
-        String itemName = sc.nextLine();
+        String itemName = r.lengthLimit(itemInput, 30);
         System.out.println("Please Enter Item lot number");
         String itemLotNumber = sc.nextLine();
-        System.out.println("Enter year sold");
-        int yearSold = sc.nextInt();
-        sc.nextLine();
+        int yearSold = r.yearCheck(yearInput);
         System.out.println("Please enter buyer name");
-        String buyer = sc.nextLine();
+        String buyer = r.lengthLimit(buyerInput, 30);
         System.out.println("Please enter category");
-        String category = sc.nextLine();
-        System.out.println("Please enter price");
-        double price = sc.nextDouble();
-        sc.nextLine();
+        String category = r.lengthLimit(categoryInput, 50);
+        double price = r.priceCheck(priceInput);
+
         return new Item(itemName, itemLotNumber, yearSold, buyer, category, price);
 
     }
