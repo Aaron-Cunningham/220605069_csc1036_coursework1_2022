@@ -12,8 +12,6 @@ public class Reporting {
     private static final String ANSI_RESET = "\u001B[0m";
     //Sets console text to Green
     public static final String ANSI_GREEN = "\u001B[32m";
-
-
     //List containing auction houses
     public ArrayList<AuctionHouse> auctionHouses = new ArrayList<>();
 
@@ -24,7 +22,6 @@ public class Reporting {
      * @param addedAuctionHouse
      * **/
     public boolean addAuctionHouse(AuctionHouse addedAuctionHouse){
-        //Iterates through all the auction houses
         for (AuctionHouse auctionHouse: auctionHouses){
             //If there's an auction house with the same name as the one been added
             if(auctionHouse.getName().equals(addedAuctionHouse.getName())){
@@ -33,7 +30,7 @@ public class Reporting {
                 return false;
             }
         }
-        //If it doesn't exist, it will be added to the auction houses array.
+        //If it doesn't exist, it will be added to the auction houses list.
         auctionHouses.add(addedAuctionHouse);
         System.out.println(ANSI_RED + addedAuctionHouse + ANSI_GREEN + "Successfully added");
         return true;
@@ -49,6 +46,7 @@ public class Reporting {
         System.out.println("Enter name of auction house to add to");
         String auctionHouseName = sc.nextLine();
         for (AuctionHouse auctionHouse: auctionHouses){
+            //Finds auction house that equals the user input
             if(auctionHouse.getName().equalsIgnoreCase(auctionHouseName)){
                 System.out.println(auctionHouse.getName());
                 System.out.println(ANSI_RED + "Items successfully added to " + auctionHouse + addedItem);
@@ -57,6 +55,8 @@ public class Reporting {
                 return true;
             }
         }
+        System.err.println("Auction house not found");
+        //Returns false if no auction house is found (Item isn't added)
         return false;
 
     }
@@ -69,8 +69,10 @@ public class Reporting {
      * @return ArrayList with items greater than price
      * **/
     public ArrayList<Item> filterItemByGreaterPrice(double price){
+        //Temp list to store items
         ArrayList<Item> itemsWithGreaterPrice = new ArrayList<>();
         for (AuctionHouse auctionHouse : auctionHouses){
+            //Adds most expensive items to temp list if found to have a greater price than user inputs
             itemsWithGreaterPrice.addAll(auctionHouse.filterItemsByPrice(price));
         }
         return itemsWithGreaterPrice;
@@ -83,14 +85,18 @@ public class Reporting {
      * @return null if tempList has no items.
      * **/
     public Item mostExpensiveItemReporting() {
+        //Temp list to store items
         ArrayList<Item> items = new ArrayList<>();
         for (AuctionHouse auctionHouse: auctionHouses){
             items.add(auctionHouse.mostExpensiveItem());
         }
+        //Return null if not items exist in the items list
         if(items.size() == 0){
             return null;
         }
+        //This creates a comparator for the getPrice method in the Item class
         Comparator<Item> comp = Comparator.comparing(Item::getPrice);
+        //This uses the comparator to get the most expensive item from the items list
         Item mostExpensive = Collections.max(items, comp);
         return mostExpensive;
 
@@ -137,14 +143,14 @@ public class Reporting {
         //Gets the current year
         Year year = Year.now();
         int thisYear = year.getValue();
-
         do {
             System.out.println("Please enter the year the Item sold between 1950 and " + thisYear);
             while (!sc.hasNextInt()) {
                 System.err.println("That's not a valid year. Please enter a year between 1950 and " + thisYear);
-                sc.next(); // this is important!
+                sc.next();
             }
             userYear = sc.nextInt();
+            //While loop will continue to run until conditions are met
         } while (userYear > thisYear || userYear < 1950);
         return userYear;
     }
@@ -157,21 +163,26 @@ public class Reporting {
      * @return The AuctionHouse with the largest average price for a given year.
      * **/
     public AuctionHouse bestAuctionHouseAverageYear(int year){
+        //Temp list to store auction houses
         ArrayList<AuctionHouse> bestPerforming = new ArrayList<>();
-
+        //Iterates through all auction houses
         for (AuctionHouse auctionHouse: auctionHouses){
             double average = auctionHouse.averageItemPriceGivenYear(year);
             auctionHouse.setAveragePrice(average);
+
             if(average > 0) {
+                //Adds auction houses to the best performing list if average price > 0
                 bestPerforming.add(auctionHouse);
             }
         }
         if(bestPerforming.size() == 0){
+            //If no auction houses are added to the temp list it will return null
             return null;
         }
+        //This creates a comparator for the getAveragePrice method in the AuctionHouse class
         Comparator<AuctionHouse> comp = Comparator.comparing(AuctionHouse::getAveragePrice);
+        //Uses the comparator to get the best performing auction house from the bestPerforming list
         AuctionHouse mostExpensive = Collections.max(bestPerforming, comp);
-
         return mostExpensive;
 
 
@@ -200,10 +211,12 @@ public class Reporting {
         do {
             System.out.println("Please enter the price the item sold for");
             while (!sc.hasNextDouble()) {
+                //If the user doesn't input a double they will see this message
                 System.err.println("Not a valid price, must be positive or equal to 0");
-                sc.next(); // this is important!
+                sc.next();
             }
             price = sc.nextInt();
+            //While user input is less than 0 the loop will run
         } while (price < 0);
         return price;
     }
