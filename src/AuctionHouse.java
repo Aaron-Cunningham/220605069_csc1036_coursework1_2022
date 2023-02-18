@@ -58,7 +58,6 @@ public class AuctionHouse {
      * @return Items in the auction house
      * **/
     public ArrayList<Item> getItemsInAuctionHouse() {
-
         return itemsInAuctionHouse;
     }
 
@@ -90,6 +89,7 @@ public class AuctionHouse {
      * @param item
      * **/
     public void addSoldItem(Item item){
+        //Adds to itemsInAuctionHouse list
         itemsInAuctionHouse.add(item);
     }
 
@@ -100,12 +100,15 @@ public class AuctionHouse {
      * @return Arraylist with items greater than inputted price
      * **/
     public ArrayList<Item> filterItemsByPrice(double price){
+        //Temp array list to store items > thank inputted price
         ArrayList<Item> itemsGreaterThanPrice = new ArrayList<>();
+        //Returns null if no items are found
         if(itemsInAuctionHouse.size() == 0){
             return null;
         }
         for (Item item : itemsInAuctionHouse){
             if(item.getPrice() > price){
+                //Adds to temp arraylist if condition is met
                 itemsGreaterThanPrice.add(item);
             }
         }
@@ -119,6 +122,7 @@ public class AuctionHouse {
      * @return Most expensive product.
      * **/
     public Item mostExpensiveItem() {
+        //Return null if no items are found
         if(itemsInAuctionHouse.size() == 0){
             return null;
         }
@@ -139,10 +143,13 @@ public class AuctionHouse {
         int itemCount = 0;
         for (Item item: itemsInAuctionHouse){
             if(year == item.getYearSold()){
+                //Adds the values obtained from the getPrice method and updates the price variable
                 price += item.getPrice();
+                //Updates the itemCount variable by 1 each iteration
                 itemCount++;
             }
         }
+        //Returns the average values/number of values
         return price/itemCount;
     }
 
