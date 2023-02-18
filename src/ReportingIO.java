@@ -77,16 +77,13 @@ public class ReportingIO {
      * @return AuctionHouse
      * **/
     private AuctionHouse recordAuctionHouse() {
-
         Scanner sc = new Scanner(System.in);
-
         System.out.println("Please Enter the Auction House Name");
         String name = sc.nextLine();
         System.out.println("Please Enter the Auction House first line of address");
         String address = sc.nextLine();
         System.out.println("Please Enter the Auction house postcode");
         String postcode = sc.nextLine();
-
         return new AuctionHouse(name, address, postcode);
     }
 
@@ -109,7 +106,6 @@ public class ReportingIO {
         System.out.println("Please enter category");
         String category = r.lengthLimit(categoryInput, 50);
         double price = r.priceCheck(priceInput);
-
         return new Item(itemName, itemLotNumber, yearSold, buyer, category, price);
 
     }
