@@ -190,16 +190,6 @@ public class Reporting {
     }
 
 
-    public String auctionHouseItems(String name){
-        for(AuctionHouse auctionHouse:auctionHouses){
-            if(auctionHouse.getName().equalsIgnoreCase(name)){
-                return ANSI_RED + auctionHouse + ANSI_GREEN + auctionHouse.getItemsInAuctionHouse();
-            }
-        }
-        return ANSI_RED + "Auction Hose doesn't exist";
-    }
-
-
     /**
      * Code adapted from [soruce] https://stackoverflow.com/questions/35936799/validation-so-input-is-only-integer-in-java
      * This method restricts what price users can input to only positive doubles
