@@ -1,3 +1,5 @@
+import java.time.Year;
+
 public class Item {
 
     private int yearSold;
@@ -15,9 +17,11 @@ public class Item {
      */
     public Item(String itemName, String lotNumber, int yearSold, String buyerName, String category, double price) {
         this.lotNumber = lotNumber;
+        if(!yearCheck(yearSold)) System.err.println("Year must be between 1950 and the current year");
         this.yearSold = yearSold;
         this.buyerName = buyerName;
         this.category = category;
+        if(!validPrice(price)) System.err.println("Price must be positive");
         this.price = price;
         this.itemName = itemName;
     }
@@ -53,4 +57,22 @@ public class Item {
                 "Price: " + price + "\n" +
                 "item name: " + itemName + "\n";
     }
+    public boolean validPrice(double price){
+        if(price < 0){
+
+            return false;
+        }
+        return true;
+    }
+
+    public boolean yearCheck(int checkedYear){
+        Year year = Year.now();
+        int thisYear = year.getValue();
+        if(checkedYear < 1950 || checkedYear > thisYear){
+            return false;
+        }
+        return true;
+    }
 }
+
+
