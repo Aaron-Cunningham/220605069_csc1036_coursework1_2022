@@ -17,7 +17,7 @@ public class Reporting {
 
 
     /**
-     * This method takes an added auction house and checks if it already exists in the auctionHouses Array.
+     * This method takes an added auction house and checks if it already exists in the auctionHouses array list.
      * If it does exist the user will receive a message saying it exists, else, it gets added to the list of auction houses.
      * @param addedAuctionHouse
      * **/
@@ -72,6 +72,11 @@ public class Reporting {
         //Temp list to store items
         ArrayList<Item> itemsWithGreaterPrice = new ArrayList<>();
         for (AuctionHouse auctionHouse : auctionHouses){
+
+            if(itemsWithGreaterPrice.size() == 0){
+                System.err.println("No items found");
+                return null;
+            }
             //Adds most expensive items to temp list if found to have a greater price than user inputs
             itemsWithGreaterPrice.addAll(auctionHouse.filterItemsByPrice(price));
         }
