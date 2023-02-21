@@ -49,6 +49,9 @@ public class ReportingIO {
                     sc.nextLine();
                     System.out.println(r.filterItemByGreaterPrice(price));
                 }
+                case 4 -> {
+                    System.out.println(r.mostExpensiveItemReporting());
+                }
                 case 5 -> {
                     System.out.println("Please enter a year");
                     int year = sc.nextInt();
@@ -64,8 +67,6 @@ public class ReportingIO {
             }
             menuSystem();
         } while (option != 0);
-
-
     }
 
 
