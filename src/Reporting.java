@@ -73,15 +73,13 @@ public class Reporting {
         ArrayList<Item> itemsWithGreaterPrice = new ArrayList<>();
         for (AuctionHouse auctionHouse : auctionHouses){
 
-
-
-
-            //Adds most expensive items to temp list if found to have a greater price than user inputs
-            itemsWithGreaterPrice.addAll(auctionHouse.filterItemsByPrice(price));
-        }
-        if(itemsWithGreaterPrice.size() == 0){
-            System.err.println("No items found");
-            return null;
+            try {
+                //Adds most expensive items to temp list if found to have a greater price than user inputs
+                itemsWithGreaterPrice.addAll(auctionHouse.filterItemsByPrice(price));
+            }
+            catch (Exception x){
+                System.err.println("No items found");
+            }
         }
         return itemsWithGreaterPrice;
     }
