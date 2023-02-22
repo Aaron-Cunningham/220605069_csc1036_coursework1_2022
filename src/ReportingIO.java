@@ -10,7 +10,7 @@ public class ReportingIO {
 
     String itemInput, categoryInput, buyerInput;
     int yearInput;
-    double priceInput;
+    double priceInput, price;
 
 
     /**
@@ -41,11 +41,9 @@ public class ReportingIO {
                 }
                 case 2 -> {
                     r.addItem(recordItem());
-
                 }
                 case 3 -> {
-                    System.out.println("Please input a price");
-                    double price = sc.nextDouble();
+                    double price = r.priceCheck(priceInput);
                     sc.nextLine();
                     System.out.println(r.filterItemByGreaterPrice(price));
                 }
@@ -53,8 +51,7 @@ public class ReportingIO {
                     System.out.println(r.mostExpensiveItemReporting());
                 }
                 case 5 -> {
-                    System.out.println("Please enter a year");
-                    int year = sc.nextInt();
+                    int year = r.yearCheck(yearInput);
                     sc.nextLine();//Buffer
                     System.out.println(r.bestAuctionHouseAverageYear(year));
                 }
