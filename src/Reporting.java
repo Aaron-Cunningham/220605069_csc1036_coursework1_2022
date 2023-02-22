@@ -150,7 +150,7 @@ public class Reporting {
         Year year = Year.now();
         int thisYear = year.getValue();
         do {
-            System.out.println("Please enter the year the Item sold between 1950 and " + thisYear);
+            System.out.println("Please enter the year the Item between 1950 and " + thisYear);
             while (!sc.hasNextInt()) {
                 System.err.println("That's not a valid year. Please enter a year between 1950 and " + thisYear);
                 sc.next();
@@ -205,7 +205,7 @@ public class Reporting {
     public double priceCheck(double price) {
         Scanner sc = new Scanner(System.in);
         do {
-            System.out.println("Please enter the price the item sold for");
+            System.out.println("Please enter a price");
             while (!sc.hasNextDouble()) {
                 //If the user doesn't input a double they will see this message
                 System.err.println("Not a valid price, must be positive or equal to 0");
@@ -216,8 +216,5 @@ public class Reporting {
         } while (price < 0);
         return price;
     }
-
-
-
 
 }
