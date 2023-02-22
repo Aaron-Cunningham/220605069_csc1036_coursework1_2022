@@ -10,7 +10,7 @@ public class ReportingIO {
 
     String itemInput, categoryInput, buyerInput;
     int yearInput;
-    double priceInput, price;
+    double priceInput;
 
 
     /**
