@@ -126,7 +126,9 @@ public class AuctionHouse {
         if(itemsInAuctionHouse.size() == 0){
             return null;
         }
+        //This creates a comparator for the getPrice method in the Item class
         Comparator<Item> comp = Comparator.comparing(Item::getPrice);
+        //This uses the comparator to get the max get price item from the items list
         Item mostExpensiveItem = Collections.max(itemsInAuctionHouse, comp);
         return mostExpensiveItem;
     }

@@ -24,7 +24,7 @@ public class Reporting {
     public boolean addAuctionHouse(AuctionHouse addedAuctionHouse){
         for (AuctionHouse auctionHouse: auctionHouses){
             //If there's an auction house with the same name as the one been added
-            if(auctionHouse.getName().equals(addedAuctionHouse.getName())){
+            if(auctionHouse.getName().equalsIgnoreCase(addedAuctionHouse.getName())){
                 //It returns false and prints a message to the user
                 System.out.println(ANSI_RED + "Auction house already exists" + ANSI_RESET);
                 return false;
@@ -102,7 +102,7 @@ public class Reporting {
         }
         //This creates a comparator for the getPrice method in the Item class
         Comparator<Item> comp = Comparator.comparing(Item::getPrice);
-        //This uses the comparator to get the most expensive item from the items list
+        //This uses the comparator to get the max get price item from the items list
         Item mostExpensive = Collections.max(items, comp);
         return mostExpensive;
 
@@ -187,12 +187,9 @@ public class Reporting {
         }
         //This creates a comparator for the getAveragePrice method in the AuctionHouse class
         Comparator<AuctionHouse> comp = Comparator.comparing(AuctionHouse::getAveragePrice);
-        //Uses the comparator to get the best performing auction house from the bestPerforming list
+        //Uses the comparator to get the max average price from auction house from the bestPerforming list
         AuctionHouse mostExpensive = Collections.max(bestPerforming, comp);
         return mostExpensive;
-
-
-
     }
 
 
