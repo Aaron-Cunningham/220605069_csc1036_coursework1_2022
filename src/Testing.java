@@ -125,6 +125,23 @@ public class Testing {
             System.out.println(ANSI_RED + "Auction house 2 name: Fail");
         }
 
+        /*
+        Item class tests
+         */
+
+        //Tests the getPrice method in the Item class
+        if(item1.getPrice() == 12000000){
+            System.out.println(ANSI_GREEN + "Item 1 price: Pass");
+        }else{
+            System.out.println(ANSI_RED + "Item 1 price Fail");
+        }
+
+        if(item1.getYearSold() == 2023){
+            System.out.println(ANSI_GREEN + "Item 1 year sold: Pass");
+        }else {
+            System.out.println(ANSI_RED + "Item 1 year sold: Fail");
+        }
+
         //Test to check if validation works for yearCheck
         Item item8 = new Item("Test", "A123", 2024, "Sonia Watson", "Furniture", 90012121);//PASSED
         auctionHouse1.addSoldItem(item8);
