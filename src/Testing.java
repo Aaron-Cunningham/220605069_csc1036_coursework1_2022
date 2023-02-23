@@ -36,47 +36,94 @@ public class Testing {
          */
 
         //Test to view most expensive item
-        System.out.println(ANSI_RED + "The most expensive item is \n" + ANSI_GREEN + r.mostExpensiveItemReporting());//PASSED Returns Julius Caesar Item
+        if(r.mostExpensiveItemReporting().equals(item3)){
+            System.out.println(ANSI_GREEN + "Most expensive item: Pass");
+        }else {
+            System.out.println(ANSI_RED + "Most expensive item: Fail");
+        }
 
         //Test to filter item by given price
-        System.out.println(ANSI_RED + "List of all items over 1000 \n" + ANSI_GREEN + r.filterItemByGreaterPrice(1000));//PASSED Returns Julius Caesar Item, The Starry Night Item, Mona Lisa Item
+        if(r.filterItemByGreaterPrice(1000).contains(item1) && r.filterItemByGreaterPrice(1000).contains(item4) && r.filterItemByGreaterPrice(1000).contains(item3)){
+            System.out.println(ANSI_GREEN + "Filter item given price: Pass");
+        }else{
+            System.out.println(ANSI_RED + "Filter item given price: Fail");
+        }
 
-        //Test to view the auction house with the highest average given the year
-        System.out.println(ANSI_RED + "The best performing Auction House based on Average Item price in year 2023 is \n" + ANSI_GREEN +r.bestAuctionHouseAverageYear(2023));//PASSED Returned Bid to Buy
+        //Test the auction house with the highest average given the year method
+        if(r.bestAuctionHouseAverageYear(2023).equals(auctionHouse1)){
+            System.out.println(ANSI_GREEN + "Auction house with highest average given year: Pass");
+        }else{
+            System.out.println("Auction house with highest average given year: Fail");
+        }
 
 
         /*
         AuctionHouse class Tests
          */
-        //Test to view items in auction house 1
-        System.out.println(ANSI_RED + "A list of items in Bid to buy's Auction house is \n" + ANSI_GREEN + auctionHouse1.getItemsInAuctionHouse());//PASSED Returns Julius Caesar Item, Mona Lisa Item, Couch Item
 
-        //Test to view items in auction house 2
-        System.out.println(ANSI_RED + "A list of items in Bidders Dream's Auction house is \n" + ANSI_GREEN + auctionHouse2.getItemsInAuctionHouse());//PASSED Returns The Starry Night, Old Chair, Vintage Table
+        //Test to view items in auction house 1
+        if(auctionHouse1.getItemsInAuctionHouse().contains(item1) && auctionHouse1.getItemsInAuctionHouse().contains(item2) && auctionHouse1.getItemsInAuctionHouse().contains(item3)){
+            System.out.println(ANSI_GREEN + "Items in auction house 1: Pass");
+        } else {
+            System.out.println(ANSI_RED + "Items in auction house 1: Fail");
+        }
 
         //Test to view average item price in auction house 1
-        System.out.println(ANSI_RED + "Average price of Items in Bid to buy's Auction house in 2023 is \n" + ANSI_GREEN + auctionHouse1.averageItemPriceGivenYear(2023));//PASSED Returns 6000025
+        if(auctionHouse1.averageItemPriceGivenYear(2023) == 6000025){
+            System.out.println(ANSI_GREEN + "Average item price auction house 1: Pass");
+        } else{
+            System.out.println(ANSI_RED + "Average item price auction house 1: Fail");
+        }
 
         //Test to view average item price in auction house 2
-        System.out.println(ANSI_RED + "Average price of Items in Bidders Dream's Auction house in 2022 is \n" + ANSI_GREEN + auctionHouse2.averageItemPriceGivenYear(2022));//PASSED Returns 900.0
+        if(auctionHouse2.averageItemPriceGivenYear(2022) == 900){
+            System.out.println(ANSI_GREEN + "Average item price auction house 2: Pass");
+        } else{
+            System.out.println(ANSI_RED + "Average item price auction house 2: Fail");
+        }
 
-        //Test to see number of items in auction house 1
-        System.out.println(ANSI_RED + "The number of Items in Bid to Buy's Auction house is \n" + ANSI_GREEN + auctionHouse1.numOfItems);//PASSED Returned 3
+        //Test on most expensive item method in auction house 1
+        if(auctionHouse1.mostExpensiveItem().equals(item3)) {
+            System.out.println(ANSI_GREEN + "Most expensive item in auction house 1: Pass");
+        }else{
+            System.out.println(ANSI_RED + "Most expensive item in auction house 1: Fail");
+        }
 
-        //Test to see most expensive item in auction house 1
-        System.out.println(ANSI_RED + "The most expensive item in Bid to Buy's Auction house is \n" + ANSI_GREEN + auctionHouse1.mostExpensiveItem());//PASSED Returned Julius Caesar Item
+        //Test on most expensive item method in auction house 2
+        if(auctionHouse2.mostExpensiveItem().equals(item4)){
+            System.out.println(ANSI_GREEN + "Most expensive item in auction house 2: Pass");
 
-        //Test to see most expensive item in auction house 2
-        System.out.println(ANSI_RED + "The most expensive item in Bidders Dream's Auction house is \n" + ANSI_GREEN + auctionHouse2.mostExpensiveItem());//PASSED Returned Starry Night Item
+        }else {
+            System.out.println(ANSI_RED + "Most expensive item in auction house 2: Fail");
+        }
 
-        //Test to see items greater than inputted price in auction house 1
-        System.out.println(ANSI_RED + "Items greater than the inputted price of 100 in Bid to Buy's Auction house is \n" + ANSI_GREEN + auctionHouse1.filterItemsByPrice(100));//PASSED Returned Mona Lisa Item, Julius Caesar Item
+        //Test on filter items by price in auction house 1
+        if (auctionHouse1.filterItemsByPrice(100).contains(item1) && auctionHouse1.filterItemsByPrice(100).contains(item3)){
+            System.out.println(ANSI_GREEN + "Filter items by price auction house 1: Pass");
+        }else {
+            System.out.println(ANSI_RED + "Filter items by price auction house 1: Fail");
+        }
 
-        //Test to see items greater than inputted price in auction house 2
-        System.out.println(ANSI_RED + "Items greater than the inputted price of 600 in Bidders Dream Auction house is \n" + ANSI_GREEN + auctionHouse2.filterItemsByPrice(600));//PASSED Returned Vintage table Item, The Starry Night Item
+        //Test on filter items by price in auction house 2
+        if(auctionHouse2.filterItemsByPrice(600).contains(item6) && auctionHouse2.filterItemsByPrice(600).contains(item4)){
+            System.out.println(ANSI_GREEN + "Filter items by price auction house 2: Pass");
+        }else {
+            System.out.println(ANSI_RED + "Filter items by price auction house 2: Fail");
+        }
 
+        //Test on auction house 1 getName method
+        if(auctionHouse1.getName().equals("Bid to buy")){
+            System.out.println(ANSI_GREEN + "Auction house 1 name: Pass");
+        }else {
+            System.out.println(ANSI_RED + "Auction house 1 name: Fail");
+        }
 
-
+        //Test on auction house 2 getName method
+        if(auctionHouse2.getName().equals("Bidders Dream")){
+            System.out.println(ANSI_GREEN + "Auction house 2 name: Pass");
+        }else {
+            System.out.println(ANSI_RED + "Auction house 2 name: Fail");
+        }
 
         //Test to check if validation works for yearCheck
         Item item8 = new Item("Test", "A123", 2024, "Sonia Watson", "Furniture", 90012121);//PASSED
@@ -85,8 +132,6 @@ public class Testing {
         //Test to check if validation works for priceCheck
         Item item9 = new Item("Vintage Table", "A123", 2022, "Sonia Watson", "Furniture", -1);//PASSED
         auctionHouse2.addSoldItem(item9);
-
-
 
 
 
